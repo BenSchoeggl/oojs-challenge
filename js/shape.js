@@ -58,3 +58,46 @@ function createShape(left, top, width, height, stylesMap) {
     shape.stylesMap = stylesMap;
     return shape;
 } //createShape()
+
+function renderRectangle(canvasCtx) {
+    canvasCtx.fillRect(this.left, this.top, this.width, this.height);
+}
+
+function createRectangle(xUpperLeft, yUpperLeft, width, height, stylesMap) {
+    var rectangle = createShape(xUpperLeft, yUpperLeft, width, height, stylesMap);
+    rectangle.renderShape = renderRectangle;
+    return rectangle;
+}
+
+registerPrototypalShape('Rectangle', createRectangle);
+
+function renderCircle(canvasCtx) {
+    canvasCtx.beginPath();
+    canvasCtx.arc(this.left, this.top, this.width, 0, 2 * Math.PI, true);
+    canvasCtx.closePath();
+    canvasCtx.fill();
+}
+
+function createCircle(xCenter, yCenter, radius, stylesMap) {
+    var circle = createShape(xCenter, yCenter, radius, null, stylesMap);
+    circle.renderShape = renderCircle;
+    return circle;
+}
+
+registerPrototypalShape('Circle', createCircle);
+
+function renderHalfMoon(canvasCtx) {
+    canvasCtx.beginPath();
+    canvasCtx.arc(this.left, this.top, this.width, Math.PI / 2, (3 * Math.PI) / 2, false);
+    canvasCtx.closePath();
+    canvasCtx.fill();
+}
+
+function createHalfMoon(xCenter, yCenter, radius, stylesMap) {
+    var halfMoon = createShape(xCenter, yCenter, radius, null, stylesMap);
+    halfMoon.renderShape = renderHalfMoon;
+    return halfMoon;
+}
+
+registerPrototypalShape('Half Moon', createHalfMoon);
+
