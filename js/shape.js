@@ -78,7 +78,7 @@ function renderCircle(canvasCtx) {
     canvasCtx.fill();
 }
 
-function createCircle(xCenter, yCenter, radius, stylesMap) {
+function createCircle(xCenter, yCenter, radius, unused, stylesMap) {
     var circle = createShape(xCenter, yCenter, radius, null, stylesMap);
     circle.renderShape = renderCircle;
     return circle;
@@ -86,18 +86,16 @@ function createCircle(xCenter, yCenter, radius, stylesMap) {
 
 registerPrototypalShape('Circle', createCircle);
 
-function renderHalfMoon(canvasCtx) {
-    canvasCtx.beginPath();
-    canvasCtx.arc(this.left, this.top, this.width, Math.PI / 2, (3 * Math.PI) / 2, false);
-    canvasCtx.closePath();
-    canvasCtx.fill();
+function renderBen(canvasCtx) {
+    canvasCtx.fillText(this.text, this.left, this.top);
 }
 
-function createHalfMoon(xCenter, yCenter, radius, stylesMap) {
-    var halfMoon = createShape(xCenter, yCenter, radius, null, stylesMap);
-    halfMoon.renderShape = renderHalfMoon;
-    return halfMoon;
+function createBen(xUpperLeft, yUpperLeft, unused, unused, stylesMap) {
+    var ben = createShape(xUpperLeft, yUpperLeft, null, null, stylesMap)
+    ben.text = "Ben";
+    ben.renderShape = renderBen;
+    return ben;
 }
 
-registerPrototypalShape('Half Moon', createHalfMoon);
+registerPrototypalShape('Ben', createBen);
 
